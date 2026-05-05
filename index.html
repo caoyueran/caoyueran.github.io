@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>密网巡哨 TrafficVigil — 加密流量治理平台</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient ambient-a"></div>
+  <div class="ambient ambient-b"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">
+        <span></span><span></span><span></span>
+      </div>
+      <div>
+        <p class="eyebrow">Encrypted Traffic Governance Suite</p>
+        <h1>密网巡哨 TrafficVigil</h1>
+      </div>
+    </div>
+    <nav class="topnav">
+      <a href="index.html" class="nav-current">首页</a>
+      <a href="dashboard.html">数据中心</a>
+      <a href="workspace.html">功能中枢</a>
+      <a href="about.html">关于平台</a>
+    </nav>
+    <button class="ghost-button" id="pulseButton">启动巡检</button>
+    <button class="ghost-button" id="authButton">登录</button>
+  </header>
+
+  <!-- ═══ Auth Drawer (slide-out overlay) ═══ -->
+  <div class="auth-overlay" id="authOverlay"></div>
+  <div class="auth-drawer" id="authDrawer">
+    <button class="auth-drawer-close" id="authClose">&times;</button>
+    <div class="auth-card">
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-auth="login">登录 Sign In</button>
+        <button class="auth-tab" data-auth="register">注册 Sign Up</button>
+      </div>
+
+      <form class="auth-form active" data-auth-form="login" onsubmit="event.preventDefault(); handleLogin();">
+        <div class="auth-field">
+          <label>邮箱地址</label>
+          <input type="email" placeholder="admin@trafficvigil.cn" required>
+        </div>
+        <div class="auth-field">
+          <label>密码</label>
+          <input type="password" placeholder="········" required>
+        </div>
+        <div class="auth-options">
+          <label><input type="checkbox"> 记住此设备</label>
+          <a href="#">忘记密码？</a>
+        </div>
+        <button type="submit" class="auth-submit">登 录</button>
+        <div class="auth-divider">或通过以下方式登录</div>
+        <div class="auth-social">
+          <button type="button" class="social-btn" title="GitHub">&#10005;</button>
+          <button type="button" class="social-btn" title="Google">G</button>
+          <button type="button" class="social-btn" title="微信">&#128172;</button>
+          <button type="button" class="social-btn" title="SSO">@</button>
+        </div>
+      </form>
+
+      <form class="auth-form" data-auth-form="register" onsubmit="event.preventDefault(); handleRegister();">
+        <div class="auth-field">
+          <label>用户名</label>
+          <input type="text" placeholder="您的用户名" required>
+        </div>
+        <div class="auth-field">
+          <label>邮箱地址</label>
+          <input type="email" placeholder="your@email.com" required>
+        </div>
+        <div class="auth-field">
+          <label>密码</label>
+          <input type="password" placeholder="至少 8 位字符" minlength="8" required>
+        </div>
+        <div class="auth-field">
+          <label>确认密码</label>
+          <input type="password" placeholder="再次输入密码" minlength="8" required>
+        </div>
+        <div class="auth-options">
+          <label><input type="checkbox" required> 我已阅读并同意 <a href="#">服务条款</a> 与 <a href="#">隐私政策</a></label>
+        </div>
+        <button type="submit" class="auth-submit">注 册</button>
+        <div class="auth-divider">或通过以下方式注册</div>
+        <div class="auth-social">
+          <button type="button" class="social-btn" title="GitHub">&#10005;</button>
+          <button type="button" class="social-btn" title="Google">G</button>
+          <button type="button" class="social-btn" title="微信">&#128172;</button>
+          <button type="button" class="social-btn" title="SSO">@</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <main>
+    <!-- ═══ Hero + Radar ═══ -->
+    <section class="hero page-transition">
+      <div class="hero-copy glass">
+        <p class="eyebrow">融合多模态大数据的加密流量识别溯源系统</p>
+        <h2>从混合流量中定位加密通信行为，完成用户行为嗅探与群组关联溯源。</h2>
+        <p class="hero-text">
+          融合多模态大数据的加密流量识别溯源系统，覆盖综合检测、数据中心、VPN 流量分析、行为嗅探、实时流量监测、群组匹配与协议扩展全流程。
+        </p>
+        <div class="hero-actions">
+          <a class="primary-button" href="workspace.html">进入功能中枢</a>
+          <a class="secondary-button" href="about.html">查看技术架构</a>
+        </div>
+        <div class="hero-stats">
+          <article>
+            <strong data-counter="98.7">0</strong>
+            <span>VPN 识别准确率</span>
+          </article>
+          <article>
+            <strong data-counter="90.2">0</strong>
+            <span>行为分析准确率</span>
+          </article>
+          <article>
+            <strong data-counter="89.4">0</strong>
+            <span>群组匹配准确率</span>
+          </article>
+        </div>
+      </div>
+
+      <div class="hero-visual glass">
+        <div class="hero-grid"></div>
+        <div class="radar">
+          <div class="radar-ring ring-1"></div>
+          <div class="radar-ring ring-2"></div>
+          <div class="radar-ring ring-3"></div>
+          <div class="radar-sweep"></div>
+          <span class="radar-point point-1"></span>
+          <span class="radar-point point-2"></span>
+          <span class="radar-point point-3"></span>
+          <span class="radar-point point-4"></span>
+        </div>
+        <div class="hero-panel">
+          <div>
+            <label>当前监测域</label>
+            <strong>华中区域骨干网</strong>
+          </div>
+          <div>
+            <label>活跃应用覆盖</label>
+            <strong>Telegram / Signal / WhatsApp / WeChat / QQ / Tor</strong>
+          </div>
+          <div class="mini-kpis">
+            <span><b>6.32 Gbps</b> 吞吐</span>
+            <span><b>10 ms</b> 单包时延</span>
+            <span><b>94%</b> 混合流量识别成功率</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ Quick Overview ═══ -->
+    <section class="section">
+      <div class="section-heading">
+        <p class="eyebrow">Overview</p>
+        <h3>平台核心能力一览</h3>
+        <p>面向加密即时通信流量的全方位治理平台，覆盖检测、分析、溯源与扩展全链路。</p>
+      </div>
+      <div class="three-col">
+        <article class="info-card">
+          <div class="info-icon">&#128737;</div>
+          <h4>VPN 流量分离</h4>
+          <p>基于预训练-微调框架，在混合流量中以 98.7% 准确率分离 VPN 与非 VPN 流量。</p>
+        </article>
+        <article class="info-card">
+          <div class="info-icon">&#128270;</div>
+          <h4>行为嗅探引擎</h4>
+          <p>包级图谱 + 流级拓扑 + GATv2 推理，精准识别图片传输、文件投递、音视频通话等行为。</p>
+        </article>
+        <article class="info-card">
+          <div class="info-icon">&#128225;</div>
+          <h4>群组关联溯源</h4>
+          <p>跨协议交互特征 + 时序模式匹配，构建用户-设备-群组三维关系图谱，定位风险频道。</p>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 <a href="index.html">密网巡哨 TrafficVigil</a> — Encrypted Traffic Governance Suite. All rights reserved.</p>
+    <p style="margin-top:8px;">密网巡哨 TrafficVigil 提供 7×24 持续监测，所有数据均经过多层校验与加密存储。</p>
+  </footer>
+
+  <script src="particles.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
